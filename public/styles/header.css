@@ -1,0 +1,51 @@
+.main-nav {
+    background-color: var(--accent-color);
+    width: 100%;
+    padding: 12px 0;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-left h1 {
+    color: var(--heading-color);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    letter-spacing: 1px;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    text-decoration: none;
+    color: var(--heading-color);
+    white-space: nowrap;
+    transition: color 0.3s ease;
+}
+
+.nav-item:hover {
+    color: var(--primary-color); /* Define this variable in global.css */
+}
+
+.nav-right a:hover{
+    color: var(--light-blue);
+    border-bottom: 2 px solid var(--light-blue);
+}

@@ -1,0 +1,30 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+}
+
+/* Main contact content wrapper */
+.contact-content {
+    flex: 1;
+}
+
+.contact-info{
+    max-width: 700px;
+    margin: 60px auto;
+    padding: 30px;
+    background-color: var(--light-blue);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+}
+
+/* Info text */
+.contact-info .contact-details p {
+    font-size: 16px;
+    margin: 12px 0;
+    color: var(--text-color);
+    border-left: 4px solid var(--primary-color);
+    padding-left: 12px;
+}

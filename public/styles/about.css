@@ -1,0 +1,26 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.7;
+    margin: 0;
+    padding: 0;
+}
+
+.about-content{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* About paragraph */
+.about-info {
+    max-width: 900px;
+    height: fit-content;
+    margin: 60px auto;
+    padding: 20px 30px;
+    background-color: var(--light-blue);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    font-size: 16px;
+}
