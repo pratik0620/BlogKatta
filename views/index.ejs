@@ -36,6 +36,14 @@
                                     <div class="post-author">
                                         <%= post.author %>
                                     </div>
+                                    <div class="post-created">
+                                        Posted on: <%= new Date(post.created_at).toLocaleString() %>
+                                    </div>
+                                    <% if (post.updated_at && post.updated_at.toString() !== post.created_at.toString()) { %>
+                                        <div class="post-updated">
+                                            Last Updated: <%= new Date(post.updated_at).toLocaleString() %>
+                                        </div>
+                                    <% } %>
                                     <div class="post-content">
                                         <%= post.content %>
                                     </div>
