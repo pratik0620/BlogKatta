@@ -32,7 +32,7 @@ app.get("/contact", (req, res) => {
 });
 
 app.get("/create", (req, res) => {
-    res.render("posts.ejs");
+    res.render("create_post.ejs");
 });
 
 app.post("/post", async (req, res) => {

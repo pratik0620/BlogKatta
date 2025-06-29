@@ -1,0 +1,44 @@
+#box{
+    width: 200px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    padding-top: 10px;
+    margin: 0 5px 0 0;
+}
+
+.nav-icon{
+    width: 60px;
+    height: 60px;
+}
+
+.nav-icon > i{
+    font-size: 30px;
+}
+
+.nav-items{
+    width: 100%;
+}
+
+.nav-items > a{
+    text-decoration: none;
+}
+
+.tab{
+    display: flex;
+    padding: 12px 20px;
+    gap: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.tab > .svg > i{
+    font-size: 24px;
+}
+
+.name > p{
+    margin: 0;
+    font-size: 1.25rem;
+
+}

@@ -28,7 +28,7 @@
     /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
     grid-template-columns: 1fr;
     gap: 30px;
-    padding: 30px 40px;
+    padding: 0;
 }
 
 .post-grid{
@@ -65,7 +65,7 @@
 .post-content{
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
-    line-height: 1.6;
+    line-height: 1.2;
     color: var(--text-color);
 }
 
@@ -103,6 +103,18 @@
     background-color: var(--primary-color);
     color: #ffffff;
 }
+
+.read-more {
+  color: #007bff;
+  text-decoration: none;
+  margin-left: 5px;
+  font-weight: 500;
+}
+
+.read-more:hover {
+  text-decoration: underline;
+}
+
 
 .no-post{
     border: 2px dashed var(--border-gray);
