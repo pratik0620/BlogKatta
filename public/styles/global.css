@@ -25,7 +25,8 @@
 
 .blog{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
+    grid-template-columns: 1fr;
     gap: 30px;
     padding: 30px 40px;
 }
@@ -37,7 +38,7 @@
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.05);
     transition: transform 0.2s ease, box-shadow 0.3s ease;
-    
+    max-height: 300px;
 }
 
 .new-post{
