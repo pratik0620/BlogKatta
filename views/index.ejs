@@ -19,20 +19,10 @@
                 <%- include("partials/sidebar.ejs") %>
             </div>
             <div id="content">
-                <div id="top">
-                    <div id="greet">
-                        <p>Hello</p>
-                    </div>
-                    <div id="create">
-                        <a href="/create">
-                            <button>
-                                Write a New Post
-                            </button>
-                        </a>
-                    </div>
+                <div class="user-topbar">
+                    <%- include("partials/user_topbar") %>
                 </div>
                 
-
                 <div class="blog">
                     <% if(posts && posts.length > 0) { %>
                         <% posts.forEach(function (post, idx) { %>
@@ -42,28 +32,20 @@
                                         <%= post.title %>
                                     </div>
                                     <div class="post-author">
-                                        <%= post.author %>
+                                        <%= post.author_name %>
                                     </div>
                                     <div class="post-created">
-                                        Posted on: <%= new Date(post.created_at).toLocaleString() %>
+                                        Posted on: <%= new Date(post.post_created_at).toLocaleString() %>
                                     </div>
-                                    <% if (post.updated_at && post.updated_at.toString() !== post.created_at.toString()) { %>
+                                    <% if (post.updated_at && post.post_updated_at.toString() !== post.created_at.toString()) { %>
                                         <div class="post-updated">
-                                            Last Updated: <%= new Date(post.updated_at).toLocaleString() %>
+                                            Last Updated: <%= new Date(post.post_updated_at).toLocaleString() %>
                                         </div>
                                     <% } %>
                                     <div class="post-content">
                                         <%= post.content.split(" ").slice(0, 100).join(" ") %>... 
                                         <a href="/posts/<%= post.id %>" class="read-more">Read More</a>
                                     </div>
-                                    <div class="btn-container">              
-                                        <a href="/edit/<%= post.id %>">
-                                            <button type="submit" class="custom-btn">Edit</button>
-                                        </a>
-                                        <form action="/delete/<%= post.id %>" method="POST">
-                                            <button type="submit" class="custom-btn outline">Delete</button>
-                                        </form>
-                                    </div> 
                                 </div>
                             </div>
                         <% }) %>
