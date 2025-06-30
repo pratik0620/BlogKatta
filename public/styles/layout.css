@@ -23,11 +23,20 @@ html, body{
 #sidebar{
     width: 250px;
     padding: 0 1rem 0 0;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+
 }
 
 #content{
     flex: 1;
     padding: 1rem;
+}
+
+.user-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
 }
 
 #footer{

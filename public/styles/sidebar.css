@@ -25,7 +25,7 @@
     text-decoration: none;
 }
 
-.tab{
+.tab, .tab-logout {
     display: flex;
     padding: 12px 20px;
     gap: 1rem;
@@ -33,7 +33,7 @@
     text-decoration: none;
 }
 
-.tab > .svg > i{
+.tab > .svg > i, .tab-logout > .svg > i{
     font-size: 24px;
 }
 
@@ -41,4 +41,20 @@
     margin: 0;
     font-size: 1.25rem;
 
+}
+
+.tab-logout{
+    border-radius: 6px;
+    background-color: #ffe5e5;
+    color: #e74c3c;
+    transition: background-color 0.3s;
+}
+
+.tab-logout:hover {
+    background-color: #f8c9c9;
+    color: #c0392b;
+}
+
+.tab-logout .name p {
+  color: inherit;
 }

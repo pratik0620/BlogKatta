@@ -1,0 +1,91 @@
+.create-post-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.post {
+    width: fit-content;
+    min-width: 400px;
+    max-width: 900px;
+    margin: 50px auto; 
+    padding: 2rem 2.5rem;
+    background-color: #fff; 
+    border-radius: 12px; 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border: 1px solid #e0e0e0;
+}
+
+.post > div{
+    margin-bottom: 1.5rem;
+}
+
+.form-row {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.form-row .title,
+.form-row .author {
+  flex: 1;
+  min-width: 200px;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+    font-size: 1rem;
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 1rem;
+    border: 1px solid var(--accent-color);
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+
+input[type="text"]:focus,
+textarea:focus {
+    background-color: #fff;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+    outline: none;
+}
+textarea {
+    min-height: 180px;
+    resize: vertical;
+}
+
+.submit-Btn{
+    display: flex;
+    justify-content: center;
+}
+
+.submit-Btn .submit{
+    background: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.submit-Btn .submit:hover{
+    background-color: var(--dark-blue);
+}
