@@ -1,10 +1,13 @@
 import express from "express";
 import bodyParser from "body-parser";
 import pg from "pg";
+import bcrypt from "bcrypt";
+import session from "express-session";
 import env from "dotenv";
 
 const app = express();
 const port = 3000;
+const saltRounds = 10;
 env.config();
 
 const db = new pg.Client({
@@ -16,56 +19,172 @@ const db = new pg.Client({
 });
 db.connect();
 
-const posts = [];
-let postId = 1;
-
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24,
+        secure: false, 
+    }
+  })
+);
 
-app.get("/about", (req, res) => {
-    res.render("about.ejs");
+function isAuthenticated(req, res, next) {
+    if(req.session.user){
+        return next();
+    } else{
+        res.redirect("/login");
+    }
+}
+
+app.get("/register", (req, res) => {
+    res.render("register.ejs")
 });
 
-app.get("/contact", (req, res) => {
+app.get("/login", (req, res) => {
+    res.render("login.ejs")
+});
+
+app.post("/register", async (req, res) => {
+    const firstName = req.body.first_name;
+    const lastName = req.body.last_name;
+    const email = req.body.email;
+    const username = req.body.username;
+    const password = req.body.password;
+
+    try{
+        //Check if user exist
+        const exists = await db.query(
+            "SELECT * FROM users WHERE email = $1",
+            [email]
+        );
+        if(exists.rows.length > 0){
+            res.redirect("/login");
+        }
+
+        //Hash Password
+        const hashPassword = await bcrypt.hash(password, saltRounds)
+
+        await db.query(
+            "INSERT INTO users (first_name, last_name, email, password, username) VALUES ($1, $2, $3, $4, $5)",
+            [firstName, lastName, email, hashPassword, username]
+        );
+
+        res.redirect("/home")
+    } catch(err){
+        console.log("Try again")
+    }
+});
+
+app.post("/login", async (req, res) => {
+    const email = req.body.email;
+    const loginPassword = req.body.password;
+
+    try{
+        //Check if user exists
+        const result = await db.query(
+            "SELECT * FROM users WHERE email = $1",
+            [email]
+        );
+        if(result.rows.length === 0){
+            return res.redirect("/register")
+        }
+
+        const user = result.rows[0];
+        const storedPassword = user.password;
+        const match = await bcrypt.compare(loginPassword, storedPassword)
+        if (match) {
+            req.session.user = {
+                id: user.id,
+                email: user.email,
+                username: user.username,
+                first_name: user.first_name,
+                lastName: user.lastName
+            }
+            return res.redirect("/home");
+        } else {
+            return res.send("Incorrect Password");
+        }
+
+    } catch(err){
+        console.log(err);
+    }
+});
+
+app.get("/logout", (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            console.log("Error destroying session:", err);
+        }
+        res.redirect("/login");
+    });
+});
+
+app.get("/about", isAuthenticated, (req, res) => {
+    res.render("about.ejs", { user: req.session.user});
+});
+
+app.get("/contact", isAuthenticated, (req, res) => {
     res.render("contact.ejs");
 });
 
-app.get("/create", (req, res) => {
+app.get("/create", isAuthenticated, (req, res) => {
     res.render("create_post.ejs");
 });
 
-app.post("/post", async (req, res) => {
+app.post("/create", isAuthenticated, async (req, res) => {
     const title = req.body["title"];
-    const author = req.body["author"];
     const content = req.body["content"];
+
+    const author_id = req.session.user.id;
+    const author_name = req.session.user.first_name + " " + req.session.user.last_name;
+
     const currentTime = new Date();
 
     try{
         await db.query(
-            "INSERT INTO post (author, title, content, created_at, updated_at) VALUES ($1, $2, $3, $4, $5)",
-            [author, title, content, currentTime, currentTime]
+            "INSERT INTO post (author_id, author_name, title, content, post_created_at, post_updated_at) VALUES ($1, $2, $3, $4, $5, $6)",
+            [author_id, author_name, title, content, currentTime, currentTime]
         )
     } catch(err) {
         console.log(err);
     }
-    res.redirect("/");
+    res.redirect("/home");
 });
 
-app.post("/delete/:id", async (req, res) => {
+app.post("/delete/:id", isAuthenticated, async (req, res) => {
     const idToDelete = parseInt(req.params.id);
+    const currentUserId = req.session.user.id;
     
     try {
+        const result = await db.query("SELECT * FROM post WHERE id = $1",
+            [idToDelete]
+        );
+
+        if (result.rows.length === 0) {
+            return res.status(404).send("Post not found");
+        }
+
+        const post = result.rows[0];
+        if (post.author_id !== currentUserId) {
+            return res.status(403).send("Unauthorized: You can only delete your own posts");
+        }
+        
         await db.query("DELETE FROM post WHERE id = $1",
             [idToDelete]
         );
     } catch(err) {
         console.log(err);
     }
-    res.redirect("/");
+    res.redirect("/home");
 });
 
-app.get("/edit/:id", async (req, res) => {
+app.get("/edit/:id", isAuthenticated, async (req, res) => {
     const idToEdit = parseInt(req.params.id);
     
     try{
@@ -73,41 +192,73 @@ app.get("/edit/:id", async (req, res) => {
             [idToEdit]
         );
         if(result.rows.length === 0) {
-            return res.redirect("/");
+            return res.redirect("/home");
         }
-        res.render("edit.ejs", {post: result.rows[0]});
+        res.render("edit.ejs", {post: result.rows[0], user: req.session.user});
     } catch(err) {
         console.log(err);
-        res.redirect("/")
+        res.redirect("/home")
     }
 });
 
-app.post("/edit/:id", async (req, res) => {
+app.post("/edit/:id", isAuthenticated, async (req, res) => {
     const idToEdit = parseInt(req.params.id);
     const title = req.body["title"];
-    const author = req.body["author"];
+    const author_name = req.body["author"];
     const content = req.body["content"];
     const currentTime = new Date();
+    const currentUserId = req.session.user.id;
+
     try{
+        const result = await db.query(
+            "SELECT author_id FROM post WHERE id = $1",
+            [idToEdit]
+        );
+
+        if (result.rows.length === 0) {
+            return res.status(404).send("Post not found");
+        }
+        const post = result.rows[0];
+        if (post.author_id !== currentUserId) {
+            return res.status(403).send("Unauthorized: You can only edit your own posts");
+        }
+
         await db.query(
-            "UPDATE post SET title = $1, author = $2, content = $3, updated_at = $4 WHERE id = $5",
-            [title, author, content, currentTime, idToEdit]
+            "UPDATE post SET title = $1, author_name = $2, content = $3, post_updated_at = $4 WHERE id = $5",
+            [title, author_name, content, currentTime, idToEdit]
         )
     } catch(err) {
         console.log(err);
     }
-    res.redirect("/")
+    res.redirect("/home")
 });
 
-app.get("/", async (req, res) => {
+app.get("/user_post", isAuthenticated, async (req, res) => {
+    const currentUserId = req.session.user.id;
+
+    try{
+        const result = await db.query("SELECT * FROM post WHERE author_id = $1 ORDER BY post_created_at DESC",
+            [currentUserId]
+        );
+        res.render("user_post.ejs", { posts: result.rows, user: req.session.user });
+    } catch(err) {
+        console.log(err);
+    }
+});
+
+app.get("/home", isAuthenticated, async (req, res) => {
     try {
-        const result = await db.query("SELECT * FROM post ORDER BY created_at DESC");
-        res.render("index.ejs", {posts: result.rows});
+        const result = await db.query("SELECT * FROM post ORDER BY post_created_at DESC");
+        res.render("index.ejs", {posts: result.rows, user: req.session.user});
     } catch(err) {
         console.log(err);
         res.render("index.ejs", {posts: []});
     };
 });
+
+app.get("/", (req, res) => {
+    res.render("landing.ejs")
+})
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
