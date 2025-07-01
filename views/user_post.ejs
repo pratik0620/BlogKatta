@@ -26,35 +26,7 @@
                 <div class="blog">
                     <% if(posts && posts.length > 0) { %>
                         <% posts.forEach(function (post, idx) { %>
-                            <div class="post-grid">
-                                <div class="new-post">
-                                    <div class="post-title">
-                                        <%= post.title %>
-                                    </div>
-                                    <div class="post-author">
-                                        <%= post.author_name %>
-                                    </div>
-                                    <div class="post-created">
-                                        Posted on: <%= new Date(post.post_created_at).toLocaleString() %>
-                                    </div>
-                                    <% if (post.updated_at && post.post_updated_at.toString() !== post.created_at.toString()) { %>
-                                        <div class="post-updated">
-                                            Last Updated: <%= new Date(post.post_updated_at).toLocaleString() %>
-                                        </div>
-                                    <% } %>
-                                    <div class="post-content">
-                                        <%= post.content %>
-                                    </div>
-                                    <div class="btn-container">              
-                                        <a href="/edit/<%= post.id %>">
-                                            <button type="submit" class="custom-btn">Edit</button>
-                                        </a>
-                                        <form action="/delete/<%= post.id %>" method="POST">
-                                            <button type="submit" class="custom-btn outline">Delete</button>
-                                        </form>
-                                    </div> 
-                                </div>
-                            </div>
+                            <%- include("partials/post_card", { post: post, fullView: true, showControls: true }) %>
                         <% }) %>
                         
                     <% } else { %>

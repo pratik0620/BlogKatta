@@ -1,0 +1,103 @@
+.post-grid{
+    background-color: var(--white);
+    border: 1px solid var(--border-gray);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+    max-height: fit-content;
+}
+
+.new-post{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.post-title{
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--primary-color);
+    line-height: 1.5;
+}
+
+.post-author{
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    color: #555;
+    font-style: italic;
+}
+
+.post-content{
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    line-height: 1.2;
+    color: var(--text-color);
+}
+
+.read-more {
+  color: #007bff;
+  text-decoration: none;
+  margin-left: 5px;
+  font-weight: 500;
+}
+
+.read-more:hover {
+  text-decoration: underline;
+}
+
+.btn-container {
+    display: flex;
+    align-items: center;
+    align-self: end;
+    gap: 12px;
+    margin-top: 1rem;
+}
+
+/* Common button styles */
+.custom-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* Remove default button style if inside a div */
+.custom-btn button {
+    all: unset;
+    font: inherit;
+    color: inherit;
+    cursor: inherit;
+}
+
+/* Edit Button */
+.custom-btn.edit {
+    background-color: #007bff;
+    color: white;
+}
+
+.custom-btn.edit:hover {
+    background-color: #0056b3;
+}
+
+/* Delete Button */
+.custom-btn.delete {
+    background-color: #fff;
+    color: #dc3545;
+    border: 2px solid #dc3545;
+}
+
+.custom-btn.delete:hover {
+    background-color: #dc3545;
+    color: white;
+}

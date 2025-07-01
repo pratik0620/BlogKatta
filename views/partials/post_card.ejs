@@ -1,0 +1,45 @@
+<link rel="stylesheet" href="/styles/post_card.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+
+<div class="post-grid">
+    <div class="new-post">
+        <div class="post-title">
+            <%= post.title %>
+        </div>
+        <div class="post-author">
+            <%= post.author_name %>
+        </div>
+        <div class="post-created">
+            Posted on: <%= new Date(post.post_created_at).toLocaleString() %>
+        </div>
+        <% if (post.post_updated_at && post.post_updated_at.toString() !== post.post_created_at.toString()) { %>
+            <div class="post-updated">
+                Last Updated: <%= new Date(post.post_updated_at).toLocaleString() %>
+            </div>
+        <% } %>
+        <div class="post-content">
+            <% if (typeof fullView !== 'undefined' && fullView) { %>
+                <%= post.content %>
+            <% } else { %>
+                <%= post.content.split(" ").slice(0, 100).join(" ") %>...
+                <a href="/post/<%= post.id %>" class="read-more">Read More</a>
+            <% } %>
+        </div>
+        <% if (typeof showControls !== "undefined" && showControls) { %>
+            <div class="btn-container">
+                <a href="/edit/<%= post.id %>">
+                    <div class="custom-btn edit">
+                        <i class="bi bi-pen"></i>
+                        <span>Edit</span>
+                    </div>
+                </a>
+                <form action="/delete/<%= post.id %>" method="POST">                      
+                    <button type="submit" class="custom-btn delete">
+                        <i class="bi bi-trash"></i>
+                        <span>Delete</span>
+                    </button>
+                </form>
+            </div>
+        <% } %>
+    </div>
+</div>

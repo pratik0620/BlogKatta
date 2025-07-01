@@ -46,10 +46,6 @@ app.get("/register", (req, res) => {
     res.render("register.ejs")
 });
 
-app.get("/login", (req, res) => {
-    res.render("login.ejs")
-});
-
 app.post("/register", async (req, res) => {
     const firstName = req.body.first_name;
     const lastName = req.body.last_name;
@@ -79,6 +75,10 @@ app.post("/register", async (req, res) => {
     } catch(err){
         console.log("Try again")
     }
+});
+
+app.get("/login", (req, res) => {
+    res.render("login.ejs")
 });
 
 app.post("/login", async (req, res) => {
@@ -125,12 +125,22 @@ app.get("/logout", (req, res) => {
     });
 });
 
-app.get("/about", isAuthenticated, (req, res) => {
-    res.render("about.ejs", { user: req.session.user});
+app.get("/", (req, res) => {
+    res.render("landing.ejs")
 });
 
-app.get("/contact", isAuthenticated, (req, res) => {
-    res.render("contact.ejs");
+app.get("/about", (req, res) => {
+        return res.render("about.ejs");
+});
+
+app.get("/home", isAuthenticated, async (req, res) => {
+    try {
+        const result = await db.query("SELECT * FROM post ORDER BY post_created_at DESC");
+        res.render("index.ejs", {posts: result.rows, user: req.session.user});
+    } catch(err) {
+        console.log(err);
+        res.render("index.ejs", {posts: []});
+    };
 });
 
 app.get("/create", isAuthenticated, (req, res) => {
@@ -151,33 +161,6 @@ app.post("/create", isAuthenticated, async (req, res) => {
             "INSERT INTO post (author_id, author_name, title, content, post_created_at, post_updated_at) VALUES ($1, $2, $3, $4, $5, $6)",
             [author_id, author_name, title, content, currentTime, currentTime]
         )
-    } catch(err) {
-        console.log(err);
-    }
-    res.redirect("/home");
-});
-
-app.post("/delete/:id", isAuthenticated, async (req, res) => {
-    const idToDelete = parseInt(req.params.id);
-    const currentUserId = req.session.user.id;
-    
-    try {
-        const result = await db.query("SELECT * FROM post WHERE id = $1",
-            [idToDelete]
-        );
-
-        if (result.rows.length === 0) {
-            return res.status(404).send("Post not found");
-        }
-
-        const post = result.rows[0];
-        if (post.author_id !== currentUserId) {
-            return res.status(403).send("Unauthorized: You can only delete your own posts");
-        }
-        
-        await db.query("DELETE FROM post WHERE id = $1",
-            [idToDelete]
-        );
     } catch(err) {
         console.log(err);
     }
@@ -233,6 +216,33 @@ app.post("/edit/:id", isAuthenticated, async (req, res) => {
     res.redirect("/home")
 });
 
+app.post("/delete/:id", isAuthenticated, async (req, res) => {
+    const idToDelete = parseInt(req.params.id);
+    const currentUserId = req.session.user.id;
+    
+    try {
+        const result = await db.query("SELECT * FROM post WHERE id = $1",
+            [idToDelete]
+        );
+
+        if (result.rows.length === 0) {
+            return res.status(404).send("Post not found");
+        }
+
+        const post = result.rows[0];
+        if (post.author_id !== currentUserId) {
+            return res.status(403).send("Unauthorized: You can only delete your own posts");
+        }
+        
+        await db.query("DELETE FROM post WHERE id = $1",
+            [idToDelete]
+        );
+    } catch(err) {
+        console.log(err);
+    }
+    res.redirect("/home");
+});
+
 app.get("/user_post", isAuthenticated, async (req, res) => {
     const currentUserId = req.session.user.id;
 
@@ -246,19 +256,24 @@ app.get("/user_post", isAuthenticated, async (req, res) => {
     }
 });
 
-app.get("/home", isAuthenticated, async (req, res) => {
-    try {
-        const result = await db.query("SELECT * FROM post ORDER BY post_created_at DESC");
-        res.render("index.ejs", {posts: result.rows, user: req.session.user});
+app.get("/post/:id", isAuthenticated, async (req, res) => {
+    const postId = parseInt(req.params.id);
+
+    try{
+        const result = await db.query(
+            "SELECT * FROM post WHERE id = $1",
+            [postId]
+        );
+        if (result.rows.length === 0) {
+            return res.status(404).send("Post not found");
+        }
+
+        const post = result.rows[0];
+        res.render("post.ejs", { posts: [post], user: req.session.user });
     } catch(err) {
         console.log(err);
-        res.render("index.ejs", {posts: []});
-    };
+    }
 });
-
-app.get("/", (req, res) => {
-    res.render("landing.ejs")
-})
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);

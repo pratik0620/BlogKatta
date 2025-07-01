@@ -6,8 +6,6 @@
     <title>Simple Web Blog Application</title>
     <link rel="stylesheet" href="/styles/themes/light-theme.css">
     <link rel="stylesheet" href="/styles/layout.css">
-    <link rel="stylesheet" href="/styles/blog.css">
-    
 </head>
 <body>
     <div id="main">
@@ -27,14 +25,9 @@
                 <div class="blog">
                     <% if(posts && posts.length > 0) { %>
                         <% posts.forEach(function (post, idx) { %>
-                            <%- include("partials/post_card", { post: post, fullView: false }) %>
+                            <%- include("partials/post_card", { post: post, fullView: true }) %>
                         <% }) %>
-                        
-                    <% } else { %>
-                        <div class="no-post">
-                            <p>Click on the Button Above to Create a New Post</p>
-                        </div>
-                    <% } %>    
+                    <% } %>
                 </div>
             </div>
         </div>         
