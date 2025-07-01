@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Web Blog Application - About Us</title>
+    <title>BlogKatta - About Us</title>
     <link rel="stylesheet" href="/styles/themes/light-theme.css">
     <link rel="stylesheet" href="/styles/layout.css">
     <link rel="stylesheet" href="/styles/about.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -18,25 +19,77 @@
             <div id="sidebar">
                 <%- include("partials/sidebar.ejs")  %>
             </div>
-            <div id="content">
-                
-                <div class="about-info">
-                    <h2>About This Blog</h2>
-                    <p>This is a simple blog application built to practice and demonstrate my full-stack web development skills using Node.js, Express, PostgreSQL, and EJS. Users can register, log in, create, edit, and delete their blog posts.</p>
-                    <h3>Technologies Used</h3>
-                    <ul>
-                        <li>Node.js + Express.js for backend</li>
-                        <li>PostgreSQL for database</li>
-                        <li>EJS for templating</li>
-                        <li>Bootstrap and custom CSS for UI</li>
-                        <li>bcrypt for password hashing</li>
-                        <li>express-session for user sessions</li>
-                    </ul>
-                    <h3>Why I Built This</h3>
-                    <p>I created this project as part of my learning journey in web development. It helped me understand server-side rendering, RESTful routing, user authentication, and session management. This blog serves as a portfolio project and a base for future improvements.</p>
-                    <h3>About the Developer</h3>
-                    <p>Hi, I'm Pratik Morkar, a B.Tech Computer Science student passionate about web development and building real-world applications. Feel free to explore my work and reach out!</p>
+            <div id="content">      
+                <div class="about">
+                    <div class="about-head">
+                        <h2>About This Blog Website</h2>
+                        <p>This is a simple blog application built to practice and demonstrate my full-stack web development skills using Node.js, Express, PostgreSQL, and EJS. Users can register, log in, create, edit, and delete their blog posts.</p>
+                    </div>
+                    <div class="about-grid">
+                        <div class="about-tech">
+                            <h3>Technologies Used</h3>
+                            <ul>
+                                <li>Node.js + Express.js for backend</li>
+                                <li>PostgreSQL for database</li>
+                                <li>EJS for templating</li>
+                                <li>Bootstrap and custom CSS for UI</li>
+                                <li>bcrypt for password hashing</li>
+                                <li>express-session for user sessions</li>
+                            </ul>
+                        </div>
 
+                        <div class="about-features">
+                            <h3>Key Features</h3>
+                            <ul>
+                                <li>User registration and login system</li>
+                                <li>Create, edit, and delete blog posts</li>
+                                <li>Responsive design using Bootstrap</li>
+                                <li>Session management with express-session</li>
+                                <li>Secure password handling with bcrypt</li>
+                            </ul>
+                        </div>
+
+                        <div class="about-project">
+                            <h3>Why I Built This</h3>
+                            <p>I created this project as part of my learning journey in web development. It helped me understand server-side rendering, RESTful routing, user authentication, and session management. This blog serves as a portfolio project and a base for future improvements.</p>
+                        </div>
+
+                        <div class="about-source">
+                            <h3>
+                                Project Source Code
+                                <a href="https://github.com/pratik0620/BlogKatta.git" target="_blank" rel="noopener noreferrer">
+                                    <i class="bi bi-github"></i> 
+                                </a>
+                            </h3>
+                            
+                            <p>
+                                You can view the complete source code of this project on 
+                                <a href="https://github.com/pratik0620/BlogKatta.git" target="_blank" rel="noopener noreferrer">
+                                    <i class="bi bi-github"></i> 
+                                    <span>GitHub Repository</span>
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="about-developer">
+                        <h3>About the Developer</h3>
+                        <p>Hi, I'm Pratik Morkar, a B.Tech Computer Science student passionate about web development and building real-world applications. Feel free to explore my work and reach out!</p>
+                        <div class="about-links">
+                            <a href="https://github.com/pratik0620" class="social-links" target="_blank" rel="noopener noreferrer">
+                                <div class="github">
+                                    <p>View my work on GitHub</p>
+                                    <i class="bi bi-github"></i>
+                                </div>
+                            </a>
+                            <a href="https://linkedin.com/in/pratik-morkar-73b340333" class="social-links" target="_blank" rel="noopener noreferrer">
+                                <div class="linkedin">
+                                    <p>Connect with me on LinkedIn</p>
+                                    <i class="bi bi-linkedin"></i>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

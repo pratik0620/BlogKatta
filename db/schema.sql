@@ -1,3 +1,4 @@
+-- database for post
 CREATE TABLE post (
 	id SERIAL PRIMARY KEY,
 	author_id INTEGER NOT NULL,
@@ -11,6 +12,7 @@ CREATE TABLE post (
 	CONSTRAINT fk_author FOREIGN KEY (author_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
+-- database for users
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     first_name VARCHAR(50) NOT NULL,

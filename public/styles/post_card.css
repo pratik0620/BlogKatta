@@ -55,7 +55,6 @@
     margin-top: 1rem;
 }
 
-/* Common button styles */
 .custom-btn {
     display: flex;
     align-items: center;
@@ -72,7 +71,6 @@
     box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
-/* Remove default button style if inside a div */
 .custom-btn button {
     all: unset;
     font: inherit;
