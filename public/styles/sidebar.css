@@ -1,4 +1,4 @@
-#box{
+#box {
     width: 200px;
     height: 100vh;
     display: flex;
@@ -9,11 +9,11 @@
     margin: 0 5px 0 0;
 }
 
-.nav-items{
+.nav-items {
     width: 100%;
 }
 
-.nav-items > a{
+.nav-items > a {
     display: block;
     padding: 6px 2px;
     text-decoration: none;
@@ -31,55 +31,55 @@
     text-decoration: none;
 }
 
-.tab > .svg > i, .tab-logout > .svg > i{
+.tab > .svg > i, .tab-logout > .svg > i {
     font-size: 24px;
 }
 
-.name > p{
+.name > p {
     margin: 0;
     font-size: 1.25rem;
-
 }
 
-.tab-logout{
+/* Logout */
+.tab-logout {
     border-radius: 6px;
-    color: #e74c3c;
+    color: var(--sidebar-logout-text); /* #e74c3c */
     transition: background-color 0.3s;
 }
 
 .tab:hover {
-    background-color: #e0ecff;
+    background-color: var(--sidebar-tab-hover-bg); /* #e0ecff */
     transform: translateX(4px);
     transition: all 0.3s ease;
     border-radius: 8px;
-    color: #1d4ed8;
+    color: var(--sidebar-tab-hover-text); /* #1d4ed8 */
 }
 
 .tab-logout:hover {
-    background-color: #f8c9c9;
-    color: #c0392b;
+    background-color: var(--sidebar-logout-hover-bg); /* #f8c9c9 */
+    color: var(--sidebar-logout-hover-text); /* #c0392b */
 }
 
 .tab-logout .name p {
-  color: inherit;
+    color: inherit;
 }
 
-.active-tab{
-    background-color: #dbeafe;
-    color: #1d4ed8;
+.active-tab {
+    background-color: var(--sidebar-tab-active-bg); /* #dbeafe */
+    color: var(--sidebar-tab-active-text); /* #1d4ed8 */
     font-weight: 600;
     border-radius: 8px;
     transform: translate(5px);
 }
 
-.active-tab::before{
+.active-tab::before {
     content: '';
     position: absolute;
     left: 0;
     top: 0;
     width: 4px;
     height: 100%;
-    background-color: #1d4ed8;
+    background-color: var(--sidebar-tab-active-bar); /* #1d4ed8 */
     border-radius: 8px;
     transition: all 0.3s ease;
 }

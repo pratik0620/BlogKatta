@@ -1,6 +1,6 @@
-.post-grid{
-    background-color: var(--white);
-    border: 1px solid var(--border-gray);
+.post-grid {
+    background-color: var(--card-bg); /* #ffffff */
+    border: 1px solid var(--card-border); /* #e0e0e0 */
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.05);
@@ -8,17 +8,17 @@
     max-height: fit-content;
 }
 
-.new-post{
+.new-post {
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
 
-.post-title{
+.post-title {
     font-family: 'Poppins', sans-serif;
     font-size: 24px;
     font-weight: 600;
-    color: var(--primary-color);
+    color: var(--post-title-color); /* #1976D2 */
     line-height: 1.4;
     margin-bottom: 6px;
 }
@@ -26,7 +26,7 @@
 .post-author {
     font-family: 'Nunito', sans-serif;
     font-size: 14px;
-    color: #777;
+    color: var(--post-meta-color); /* #777 */
     font-style: italic;
     margin-bottom: 8px;
 }
@@ -40,36 +40,36 @@
     margin-bottom: 8px;
     font-family: 'Nunito', sans-serif;
     font-size: 13px;
-    color: #777;
+    color: var(--post-meta-color); /* #777 */
 }
 
-.create{
+.create {
     display: flex;
 }
 
 .post-created,
 .post-updated {
     margin-right: 15px;
-    color: #999;
+    color: var(--post-meta-secondary-color); /* #999 */
 }
 
 .post-content {
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
     line-height: 1.6;
-    color: var(--text-color);
+    color: var(--post-text-color); /* #222222 */
     margin-top: 10px;
 }
 
 .read-more {
-  color: #007bff;
-  text-decoration: none;
-  margin-left: 5px;
-  font-weight: 500;
+    color: var(--read-more-link-color); /* #007bff */
+    text-decoration: none;
+    margin-left: 5px;
+    font-weight: 500;
 }
 
 .read-more:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
 .btn-container {
@@ -105,22 +105,22 @@
 
 /* Edit Button */
 .custom-btn.edit {
-    background-color: #007bff;
-    color: white;
+    background-color: var(--edit-btn-color); /* #007bff */
+    color: var(--edit-btn-text-color); /* #ffffff */
 }
 
 .custom-btn.edit:hover {
-    background-color: #0056b3;
+    background-color: var(--edit-btn-hover); /* #0056b3 */
 }
 
 /* Delete Button */
 .custom-btn.delete {
-    background-color: #fff;
-    color: #dc3545;
-    border: 2px solid #dc3545;
+    background-color: var(--delete-btn-bg);
+    color: var(--delete-btn-text-color); /* #dc3545 */
+    border: 2px solid var(--delete-btn-text-color); /* #dc3545 */
 }
 
 .custom-btn.delete:hover {
-    background-color: #dc3545;
-    color: white;
+    background-color: var(--delete-btn-hover-bg); /* #dc3545 */
+    color: var(--delete-btn-text-color-hover); /* #ffffff */
 }

@@ -1,45 +1,45 @@
-html, body{
+html, body {
     height: 100%;
     margin: 0;
     padding: 0;
 }
 
-#main{
+#main {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
-#header{
+#header {
     flex-shrink: 0;
 }
 
-#blog{
+#blog {
     flex: 1;
     display: flex;
     padding: 1rem;
 }
 
-#sidebar{
+#sidebar {
     width: 220px;
     padding: 0;
     margin: 0;
-    background-color: #f8fafc;
-    border-right: 1px solid #e5e7eb;
+    background-color: var(--background-color);       /* #F5F8FA or #f8fafc */
+    border-right: 1px solid var(--border-gray);      /* #e5e7eb or #E0E0E0 */
 }
 
-#content{
+#content {
     flex: 1;
     padding: 1rem;
 }
 
 .user-topbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
 }
 
-#footer{
+#footer {
     flex-shrink: 0;
 }

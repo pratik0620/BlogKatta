@@ -1,15 +1,14 @@
-.blog{
+.blog {
     display: grid;
-    /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
     grid-template-columns: 1fr;
     gap: 30px;
     padding: 0;
 }
 
-.no-post{
-    border: 2px dashed var(--border-gray);
-    color: var(--text-color);
-    background-color: var(--light-blue);
+.no-post {
+    border: 2px dashed var(--no-post-border);
+    color: var(--no-post-text);
+    background-color: var(--no-post-bg);
     padding: 40px;
     border-radius: 10px;
     text-align: center;

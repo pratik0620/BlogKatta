@@ -1,4 +1,4 @@
-#top{
+#top {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -11,22 +11,21 @@
     font-family: 'Montserrat', sans-serif;
     font-size: 1.8rem;
     font-weight: 600;
-    color: #2c3e50;
+    color: var(--topbar-greet-text);           /* #2c3e50 */
     padding: 1rem 1.5rem;
-    background-color: #f0f4f8;
+    background-color: var(--topbar-greet-bg);  /* #f0f4f8 */
     border-radius: 12px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 2px 6px var(--topbar-greet-shadow); /* rgba(0, 0, 0, 0.04) */
 }
 
-
-#create{
+#create {
     align-items: end;
     margin-right: 20px;
 }
 
-#create button{
-    background: var(--primary-color);
-    color: var(--white);
+#create button {
+    background: var(--topbar-btn-bg);       /* #1976D2 */
+    color: var(--topbar-btn-text);          /* #ffffff */
     border: none;
     border-radius: 8px;
     padding: 12px 24px;
@@ -35,10 +34,10 @@
     text-transform: uppercase;
     font-size: 16px;
     cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 10px var(--topbar-btn-shadow); /* rgba(0,0,0,0.1) */
     transition: all 0.3s ease;
 }
 
-#create button:hover{
-    background-color: var(--dark-blue);
+#create button:hover {
+    background-color: var(--topbar-btn-hover-bg); /* #0D47A1 */
 }

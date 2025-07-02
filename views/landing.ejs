@@ -3,14 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/themes/light-themes.css">
+    <link rel="stylesheet" href="/styles/landing.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     <title>Blog Katta</title>
 </head>
 <body>
     <div id="header">
-        <%- include("partials/header.ejs") %>
+        <div class="nav-left">
+          <h1 id="head">BlogKatta</h1>
+        </div>
+        <div class="nav-right">
+            <div class="register">
+                <a href="/register">
+                    <button>Register</button>
+                </a>
+            </div>
+            <div class="login">
+                <a href="/login">
+                    <button>Login</button>
+                </a>
+            </div>
+        </div>
     </div>
+
     <div id="welcome">
-        <h1>Welcome to Blog Katta</h1>
+        <h1>Welcome to <span>Blog Katta</span></h1>
+        <p>Your thoughts, your space — express freely.</p>
     </div>
     <div class="auth">
         <div class="register">
@@ -24,14 +43,77 @@
             </a>
         </div>
     </div>
+
     <div id="about">
         <div class="about-head">
             <h2>About This Blog Website</h2>
-            <p>This is a simple blog application built to practice and demonstrate my full-stack web development skills using Node.js, Express, PostgreSQL, and EJS. Users can register, log in, create, edit, and delete their blog posts.</p>
+            <p>This is a simple blog application built to practice and demonstrate my full-stack web development skills using Node.js, Express, PostgreSQL, and EJS.</p>
+        </div>
+        <div class="about-grid">
+            <div class="about-tech">
+                <h3>Technologies Used</h3>
+                <ul>
+                    <li>Node.js + Express.js</li>
+                    <li>PostgreSQL</li>
+                    <li>EJS Templating</li>
+                    <li>Bootstrap + CSS</li>
+                    <li>bcrypt & express-session</li>
+                </ul>
+            </div>
+            <div class="about-features">
+                <h3>Key Features</h3>
+                <ul>
+                    <li>User authentication system</li>
+                    <li>Create, edit, delete blog posts</li>
+                    <li>Responsive and minimal UI</li>
+                    <li>Session-based login</li>
+                    <li>Clean code architecture</li>
+                </ul>
+            </div>
         </div>
     </div>
+
+    <div class="highlights">
+        <div class="card">
+            <i class="bi bi-pencil-square"></i>
+            <h4>Write Freely</h4>
+            <p>Share your thoughts with a clean and distraction-free editor.</p>
+        </div>
+        <div class="card">
+            <i class="bi bi-shield-lock-fill"></i>
+            <h4>Stay Secure</h4>
+            <p>Your account and data are protected with strong encryption.</p>
+        </div>
+        <div class="card">
+            <i class="bi bi-globe-americas"></i>
+            <h4>Access Anywhere</h4>
+            <p>Fully responsive and usable across all your devices.</p>
+        </div>
+    </div>
+
+    <div class="cta-bottom">
+        <h3>Start Sharing Today 🚀</h3>
+        <p>Create an account and publish your first blog post in minutes.</p>
+        <a href="/register"><button>Join Now</button></a>
+    </div>
+
     <div id="footer">
-        <%- include("partials/footer.ejs") %>
+        <footer>
+            <div class="footer-container">
+                <div class="footer-brand">
+                    <h4>BlogKatta</h4>
+                    <p>Crafted with ❤️ using Node.js and PostgreSQL</p>
+                </div>
+                <div class="footer-links">
+                    <a href="/home">Home</a>
+                    <a href="/about">About</a>
+                    <a href="/login">Login</a>
+                </div>
+                <div class="footer-copy">
+                    <p>&copy; <%= new Date().getFullYear() %> BlogKatta. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
     </div>
 </body>
 </html>

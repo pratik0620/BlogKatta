@@ -11,33 +11,33 @@
     max-width: 900px;
     margin: 10px 50px auto; 
     padding: 2rem 2.5rem;
-    background-color: #fff; 
-    border-radius: 12px; 
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    border: 1px solid #e0e0e0;
+    background-color: var(--create-bg);
+    border-radius: 12px;
+    box-shadow: 0 4px 8px var(--create-shadow);
+    border: 1px solid var(--create-border);
 }
 
-.post > div{
+.post > div {
     margin-bottom: 1.5rem;
 }
 
 .form-row {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
 .form-row .title,
 .form-row .author {
-  flex: 1;
-  min-width: 200px;
+    flex: 1;
+    min-width: 200px;
 }
 
 label {
     display: block;
     font-weight: 600;
     margin-bottom: 0.5rem;
-    color: var(--text-color);
+    color: var(--label-text);
     font-size: 1rem;
 }
 
@@ -46,21 +46,21 @@ textarea {
     width: 100%;
     padding: 12px 16px;
     font-size: 1rem;
-    border: 1px solid var(--accent-color);
+    border: 1px solid var(--input-border);
     border-radius: 8px;
-    background-color: #f9f9f9;
+    background-color: var(--input-bg);
     box-sizing: border-box;
     transition: all 0.3s ease;
 }
 
-
 input[type="text"]:focus,
 textarea:focus {
-    background-color: #fff;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+    background-color: var(--create-bg);
+    border-color: var(--input-focus-border);
+    box-shadow: 0 0 8px var(--input-focus-shadow);
     outline: none;
 }
+
 textarea {
     min-height: 180px;
     resize: vertical;
@@ -74,7 +74,7 @@ textarea {
 }
 
 .update {
-    background-color: #007BFF; /* Blue */
+    background-color: var(--btn-update-bg); /* Blue */
     color: white;
     border: none;
     padding: 12px 24px;
@@ -89,17 +89,18 @@ textarea {
 }
 
 .update:hover {
-    background-color: #0056b3;
+    background-color: var(--btn-update-hover);
 }
 
 .cancel {
-    background-color: #f44336; /* Red */
-    color: white;
+    background-color: var(--btn-cancel-bg); /* Red */
+    color: var(--btn-cancel-text);
     padding: 12px 24px;
     font-size: 16px;
     font-weight: bold;
     border-radius: 8px;
     font-family: 'Ubuntu', sans-serif;
+    font-weight: 600;
     text-transform: uppercase;
     text-align: center;
     text-decoration: none;
@@ -109,5 +110,5 @@ textarea {
 }
 
 .cancel:hover {
-    background-color: #c62828;
+    background-color: var(--btn-cancel-hover);
 }

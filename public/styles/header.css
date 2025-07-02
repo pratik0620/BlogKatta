@@ -1,5 +1,5 @@
 .main-nav {
-    background-color: var(--accent-color);
+    background-color: var(--header-bg);
     width: 100%;
     padding: 12px 0;
 }
@@ -18,7 +18,7 @@
 }
 
 .nav-left h1 {
-    color: var(--heading-color);
+    color: var(--header-text-color);
     font-family: 'Bebas Neue', sans-serif;
     font-size: 36px;
     letter-spacing: 1px;
@@ -40,16 +40,16 @@
     font-weight: 500;
     font-size: 18px;
     text-decoration: none;
-    color: var(--heading-color);
+    color: var(--header-text-color);
     white-space: nowrap;
     transition: color 0.3s ease;
 }
 
 .nav-item:hover {
-    color: var(--primary-color); /* Define this variable in global.css */
+    color: var(--nav-hover-text);
 }
 
 .nav-right a:hover{
     color: var(--light-blue);
-    border-bottom: 2 px solid var(--light-blue);
+    border-bottom: 2 px solid var(--nav-hover-underline);
 }

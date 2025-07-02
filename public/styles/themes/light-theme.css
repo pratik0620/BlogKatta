@@ -1,11 +1,120 @@
 :root{
-    --background-color: #F5F8FA;
-    --primary-color: #1976D2;
-    --accent-color: #1565C0;
-    --text-color: #222222;
-    --heading-color: #F5F8FA;
-    --white: #FFFFFF;
-    --light-blue: #E3F2FD;
-    --dark-blue: #0D47A1;
-    --border-gray: #E0E0E0;
+    /* Header */
+    --header-bg: #1565C0;                  /* Navbar background */
+    --header-text-color: #F5F8FA;          /* Title and nav item text */
+    --nav-hover-text: #1976D2;             /* Nav item hover text */
+    --nav-hover-underline: #E3F2FD;
+
+    /* Post Card */
+    --card-bg: #ffffff;            
+    --card-border: #e0e0e0;          
+    --post-title-color: #1976D2;   
+    --post-text-color: #222222;               /* Main post content */
+    --post-meta-color: #777;                  /* Author and post info (posted by...) */
+    --post-meta-secondary-color: #999;        /* Created/Updated time text */
+    --read-more-link-color: #007bff;          /* "Read More" link and Edit button */
+    --read-more-link-hover: #0056b3;          /* Edit button hover color */
+    --edit-btn-color: #007bff;          /* "Read More" link and Edit button */
+    --edit-btn-hover: #0056b3; 
+    --edit-btn-text-color: #ffffff;
+    --delete-btn-bg: #ffffff;
+    --delete-btn-text-color: #dc3545;         /* Delete button text and border */
+    --delete-btn-hover-bg: #dc3545;    
+    --delete-btn-text-color-hover: #ffffff;
+
+    /* Topbar */
+    --topbar-greet-text: #2c3e50;         /* Text color in the greeting box */
+    --topbar-greet-bg: #f0f4f8;           /* Background for the greeting box */
+    --topbar-greet-shadow: rgba(0, 0, 0, 0.04); /* Shadow for greet box */
+    --topbar-btn-bg: #1976D2;             /* "Write a New Post" button */
+    --topbar-btn-text: #ffffff;           /* Button text */
+    --topbar-btn-hover-bg: #0D47A1;       /* Hover background for button */
+    --topbar-btn-shadow: rgba(0, 0, 0, 0.1);   
+
+    /* Sidebar */
+    --sidebar-tab-hover-bg: #e0ecff;         /* Background on tab hover */
+    --sidebar-tab-hover-text: #1d4ed8;       /* Text/icon color on tab hover */
+
+    --sidebar-tab-active-bg: #dbeafe;        /* Background for active tab */
+    --sidebar-tab-active-text: #1d4ed8;      /* Text color for active tab */
+    --sidebar-tab-active-bar: #1d4ed8;       /* Left bar on active tab */
+
+    --sidebar-logout-text: #e74c3c;          /* Logout tab text color */
+    --sidebar-logout-hover-bg: #f8c9c9;      /* Logout tab hover background */
+    --sidebar-logout-hover-text: #c0392b; 
+
+    /* Footer */
+    --footer-bg: #1565C0;                   /* Footer background */
+    --footer-heading-text: #F5F8FA;         /* Headings and links */
+    --footer-desc-text: #e0e0e0;            /* Footer description (left section) */
+    --footer-link-hover: #BBDEFB;           /* Hover on footer links */
+    --footer-note-text: #cfd8dc;            /* Copyright text */
+    --footer-icon-hover: #90CAF9;
+
+    /*  No Post */
+    --no-post-border: #E0E0E0;         /* Dashed border for "no post" message */
+    --no-post-text: #222222;           /* Text color for "no post" */
+    --no-post-bg: #E3F2FD;   
+
+    /* Create Post */
+    --create-bg: #ffffff;                         /* Post form container background */
+    --create-border: #e0e0e0;                     /* Border of form container */
+    --create-shadow: rgba(0, 0, 0, 0.1);          /* Box shadow for container */
+    --input-bg: #f9f9f9;                          /* Background of input fields */
+    --input-border: #1565C0;                      /* Border of inputs (uses --accent-color) */
+    --input-focus-border: #1976D2;               /* Border on focus (uses --primary-color) */
+    --input-focus-shadow: rgba(0, 123, 255, 0.2); /* Shadow on input focus */
+    --label-text: #222222;                        /* Label text color (uses --text-color) */
+    --submit-btn-bg: #1976D2;                    /* Submit button background (uses --primary-color) */
+    --submit-btn-text: #FFFFFF;                   /* Submit button text (uses --white) */
+    --submit-btn-hover-bg: #0D47A1;              /* Submit hover background (uses --dark-blue) */
+    --submit-btn-shadow: rgba(0, 0, 0, 0.1); 
+
+    /* Edit Post*/
+    --edit-bg: #ffffff;                            /* Background of post editor */
+    --edit-border: #e0e0e0;                        /* Border of post container */
+    --edit-shadow: rgba(0, 0, 0, 0.1);             /* Box shadow */
+    --edit-input-bg: #f9f9f9;                      /* Input background */
+    --edit-input-border: #1565C0;      /* Input normal border */
+    --edit-input-focus: #1976D2;      /* Input border on focus */
+    --edit-input-shadow: rgba(0, 123, 255, 0.2);    /* Input box shadow on focus */
+    --edit-label-color: #222222;         /* Label text color */
+    --btn-update-bg: #007BFF;                      /* Update button background */
+    --btn-update-text: #ffffff;                    /* Update button text */
+    --btn-update-hover: #0056b3;                   /* Update button hover background */
+    --btn-cancel-bg: #f44336;                      /* Cancel button background */
+    --btn-cancel-hover: #c62828;                   /* Cancel button hover background */
+    --btn-cancel-text: #ffffff;                    /* Cancel button text */
+    --btn-shadow: rgba(0, 0, 0, 0.1);
+
+    /* User Post */
+    --user-btn-padding: 8px 16px;                        /* Padding for action buttons */
+    --user-btn-font: 'Montserrat', sans-serif;          /* Font for buttons */
+    --user-btn-font-size: 14px;
+    --user-btn-font-weight: 500;
+    --user-btn-border-radius: 8px;
+    --user-btn-transition: all 0.3s ease;
+    --user-btn-fill-bg: #1976D2;           /* Filled button background */
+    --user-btn-fill-text: #ffffff;                      /* Filled button text */
+    --user-btn-fill-hover-bg: #0D47A1;         /* Filled button hover bg */
+    --user-btn-outline-border: #1976D2;    /* Outline border */
+    --user-btn-outline-text: #1976D2;      /* Outline text */
+    --user-btn-outline-hover-bg: #1976D2;  /* Outline hover background */
+    --user-btn-outline-hover-text: #ffffff;      
+
+    /* About */
+    --about-page-bg: #f9f9f9;               /* Main about page background */
+    --about-text-color: #333;              /* General about text */
+    --about-heading-color: #2c3e50;        /* About main heading */
+    --about-subheading-color: #34495e;     /* Section subheadings (features, tech, etc.) */
+    --about-secondary-text: #555;          /* Paragraph and list text */
+    --about-box-bg: #ffffff;               /* White card boxes */
+    --about-box-shadow: rgba(0, 0, 0, 0.05); /* Card shadow */
+    --about-border-bottom: #ddd;           /* Under headings */
+    --about-link-color: #181717;           /* GitHub link */
+    --about-link-hover: #0b5ed7;           /* GitHub hover */
+    --social-box-bg: #f5f5f5;              /* GitHub social box background */
+    --social-box-bg-alt: #e8f4fb;          /* LinkedIn social box background */
+    --social-box-icon-color: #0077b5;      /* LinkedIn icon */
+    --social-box-hover-shadow: rgba(0, 0, 0, 0.08);
 }
