@@ -16,24 +16,49 @@
 
 .post-title{
     font-family: 'Poppins', sans-serif;
-    font-size: 20px;
+    font-size: 24px;
     font-weight: 600;
     color: var(--primary-color);
-    line-height: 1.5;
+    line-height: 1.4;
+    margin-bottom: 6px;
 }
 
-.post-author{
+.post-author {
     font-family: 'Nunito', sans-serif;
     font-size: 14px;
-    color: #555;
+    color: #777;
     font-style: italic;
+    margin-bottom: 8px;
 }
 
-.post-content{
+.post-info {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 8px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 13px;
+    color: #777;
+}
+
+.create{
+    display: flex;
+}
+
+.post-created,
+.post-updated {
+    margin-right: 15px;
+    color: #999;
+}
+
+.post-content {
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
-    line-height: 1.2;
+    line-height: 1.6;
     color: var(--text-color);
+    margin-top: 10px;
 }
 
 .read-more {

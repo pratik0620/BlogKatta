@@ -1,47 +1,77 @@
-
-footer{
-    background-color: var(--accent-color);
-    color: var(--heading-color);
-    padding: 20px 0px;
-    font-size: 16px;
+footer {
+  background-color: var(--accent-color); /* #1565C0 */
+  color: var(--heading-color); /* #F5F8FA */
+  padding: 20px 0;
+  font-size: 14px;
+  font-family: 'Quicksand', sans-serif;
 }
 
-.footer-container{
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+.footer-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-left h4 {
+  font-size: 20px;
+  margin-bottom: 5px;
+  color: var(--heading-color);
+}
+
+.footer-left p {
+  margin: 0;
+  font-size: 13px;
+  color: #e0e0e0;
+}
+
+.footer-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-links{
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    font-family: 'Quicksand', sans-serif;
-    font-size: 14px;
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-start;
 }
 
-.footer-container .copyright{
-    flex: 1;
-    text-align: left;
-    white-space: nowrap;
+.footer-links a {
+  margin: 5px 0;
+  text-decoration: none;
+  color: #F5F8FA;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  font-size: 14px;
 }
 
-.footer-container .socials{
-    display: flex;
-    gap: 20px;
-    font-size: 24px;
-    justify-content: flex-end;
-    flex: 1;
+.footer-links a:hover {
+  color: #BBDEFB;
 }
 
-.footer-container .socials a{
-    color: var(--heading-color);
-    text-decoration: none;
-    transition: color 0.3s ease;
+.footer-right {
+  text-align: right;
 }
 
-.footer-container .socials a:hover{
-    transform: scale(1.2);
-    color: var(--light-blue);
-    transition: 0.3s ease;
+.footer-right p {
+  margin-top: 8px;
+  font-size: 13px;
+  color: #cfd8dc;
+}
+
+.footer-social a {
+  color: #F5F8FA;
+  font-size: 18px;
+  margin-left: 10px;
+  transition: color 0.3s ease;
+}
+
+.footer-social a:hover {
+  color: #90CAF9;
 }

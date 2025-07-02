@@ -9,12 +9,29 @@
     <div id="header">
         <%- include("partials/header.ejs") %>
     </div>
-    <h1>Welcome to Blog Katta</h1>
-    <a href="/register">
-        <button>Register</button>
-    </a>
-    <a href="/login">
-        <button>Login</button>
-    </a>
+    <div id="welcome">
+        <h1>Welcome to Blog Katta</h1>
+    </div>
+    <div class="auth">
+        <div class="register">
+            <a href="/register">
+                <button>Register</button>
+            </a>
+        </div>
+        <div class="login">
+            <a href="/login">
+                <button>Login</button>
+            </a>
+        </div>
+    </div>
+    <div id="about">
+        <div class="about-head">
+            <h2>About This Blog Website</h2>
+            <p>This is a simple blog application built to practice and demonstrate my full-stack web development skills using Node.js, Express, PostgreSQL, and EJS. Users can register, log in, create, edit, and delete their blog posts.</p>
+        </div>
+    </div>
+    <div id="footer">
+        <%- include("partials/footer.ejs") %>
+    </div>
 </body>
 </html>

@@ -5,16 +5,8 @@
     flex-direction: column;
     position: fixed;
     padding-top: 10px;
+    padding-left: 10px;
     margin: 0 5px 0 0;
-}
-
-.nav-icon{
-    width: 60px;
-    height: 60px;
-}
-
-.nav-icon > i{
-    font-size: 30px;
 }
 
 .nav-items{
@@ -22,7 +14,13 @@
 }
 
 .nav-items > a{
+    display: block;
+    padding: 6px 2px;
     text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border-radius: 8px;
+    font-weight: 500;
+    position: relative;
 }
 
 .tab, .tab-logout {
@@ -45,9 +43,16 @@
 
 .tab-logout{
     border-radius: 6px;
-    background-color: #ffe5e5;
     color: #e74c3c;
     transition: background-color 0.3s;
+}
+
+.tab:hover {
+    background-color: #e0ecff;
+    transform: translateX(4px);
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    color: #1d4ed8;
 }
 
 .tab-logout:hover {
@@ -57,4 +62,24 @@
 
 .tab-logout .name p {
   color: inherit;
+}
+
+.active-tab{
+    background-color: #dbeafe;
+    color: #1d4ed8;
+    font-weight: 600;
+    border-radius: 8px;
+    transform: translate(5px);
+}
+
+.active-tab::before{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #1d4ed8;
+    border-radius: 8px;
+    transition: all 0.3s ease;
 }

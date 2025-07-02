@@ -29,7 +29,7 @@
                                 </div>
                                 <div class="new-author">
                                     <label for="author">Author :- </label>
-                                    <input type="text" name="author" id="author" placeholder="Author Name">
+                                    <input type="text" name="author" id="author" value="<%= user.first_name %> <%= user.last_name %>" required>
                                 </div>
                             </div>
                             <div class="new-content">
@@ -37,7 +37,7 @@
                             </div>
                             <div class="submit-Btn">
                                 <button class="submit">
-                                    Submit
+                                    Post Blog
                                 </button>
                             </div>
                         </div>

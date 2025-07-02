@@ -4,7 +4,6 @@ import pg from "pg";
 import bcrypt from "bcrypt";
 import session from "express-session";
 import passport from "passport";
-import { Strategy } from "passport-local";
 import GoogleStrategy from "passport-google-oauth2";
 import env from "dotenv";
 
@@ -24,9 +23,7 @@ db.connect();
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
-
-app.use(
-  session({
+app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
@@ -34,7 +31,7 @@ app.use(
         maxAge: 1000 * 60 * 60 * 24,
         secure: false, 
     }
-  })
+  }),
 );
 
 function isAuthenticated(req, res, next) {
@@ -125,8 +122,7 @@ app.get("/auth/google",
     })
 );
 
-app.get(
-  "/auth/google/home",
+app.get("/auth/google/home",
   passport.authenticate("google", {
     failureRedirect: "/login",
   }),
@@ -142,8 +138,7 @@ app.get(
   }
 );
 
-passport.use(
-    "google",
+passport.use("google",
     new GoogleStrategy(
         {
             clientID: process.env.GOOGLE_CLIENT_ID,
@@ -194,30 +189,28 @@ app.get("/", (req, res) => {
 });
 
 app.get("/about", (req, res) => {
-        return res.render("about.ejs");
+        return res.render("about.ejs", {activePage: "about"});
 });
 
 app.get("/home", isAuthenticated, async (req, res) => {
     try {
         const result = await db.query("SELECT * FROM post ORDER BY post_created_at DESC");
-        res.render("index.ejs", {posts: result.rows, user: req.session.user});
+        res.render("index.ejs", {posts: result.rows, user: req.session.user, activePage: "home"});
     } catch(err) {
         console.log(err);
-        res.render("index.ejs", {posts: []});
+        res.render("index.ejs", {posts: [], activePage: "create"});
     };
 });
 
 app.get("/create", isAuthenticated, (req, res) => {
-    res.render("create_post.ejs");
+    res.render("create_post.ejs", { user: req.session.user, activePage: "create" });
 });
 
 app.post("/create", isAuthenticated, async (req, res) => {
     const title = req.body["title"];
     const content = req.body["content"];
-
+    const author_name = req.body["author"];
     const author_id = req.session.user.id;
-    const author_name = req.session.user.first_name + " " + req.session.user.last_name;
-
     const currentTime = new Date();
 
     try{
@@ -231,7 +224,7 @@ app.post("/create", isAuthenticated, async (req, res) => {
     res.redirect("/home");
 });
 
-app.get("/edit/:id", isAuthenticated, async (req, res) => {
+app.get("/user_post/edit/:id", isAuthenticated, async (req, res) => {
     const idToEdit = parseInt(req.params.id);
     
     try{
@@ -241,14 +234,14 @@ app.get("/edit/:id", isAuthenticated, async (req, res) => {
         if(result.rows.length === 0) {
             return res.redirect("/home");
         }
-        res.render("edit.ejs", {post: result.rows[0], user: req.session.user});
+        res.render("edit.ejs", {post: result.rows[0], user: req.session.user, activePage: "userPost"});
     } catch(err) {
         console.log(err);
         res.redirect("/home")
     }
 });
 
-app.post("/edit/:id", isAuthenticated, async (req, res) => {
+app.post("/user_post/edit/:id", isAuthenticated, async (req, res) => {
     const idToEdit = parseInt(req.params.id);
     const title = req.body["title"];
     const author_name = req.body["author"];
@@ -314,7 +307,7 @@ app.get("/user_post", isAuthenticated, async (req, res) => {
         const result = await db.query("SELECT * FROM post WHERE author_id = $1 ORDER BY post_created_at DESC",
             [currentUserId]
         );
-        res.render("user_post.ejs", { posts: result.rows, user: req.session.user });
+        res.render("user_post.ejs", { posts: result.rows, user: req.session.user, activePage: "userPost" });
     } catch(err) {
         console.log(err);
     }
@@ -333,7 +326,7 @@ app.get("/post/:id", isAuthenticated, async (req, res) => {
         }
 
         const post = result.rows[0];
-        res.render("post.ejs", { posts: [post], user: req.session.user });
+        res.render("post.ejs", { posts: [post], user: req.session.user, activePage: "" });
     } catch(err) {
         console.log(err);
     }
