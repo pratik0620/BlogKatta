@@ -3,6 +3,9 @@ import bodyParser from "body-parser";
 import pg from "pg";
 import bcrypt from "bcrypt";
 import session from "express-session";
+import passport from "passport";
+import { Strategy } from "passport-local";
+import GoogleStrategy from "passport-google-oauth2";
 import env from "dotenv";
 
 const app = express();
@@ -115,6 +118,67 @@ app.post("/login", async (req, res) => {
         console.log(err);
     }
 });
+
+app.get("/auth/google", 
+    passport.authenticate("google", {
+        scope: ["profile", "email"],        
+    })
+);
+
+app.get(
+  "/auth/google/home",
+  passport.authenticate("google", {
+    failureRedirect: "/login",
+  }),
+  (req, res) => {
+    req.session.user = {
+      id: req.user.id,
+      email: req.user.email,
+      username: req.user.username,
+      first_name: req.user.first_name,
+      last_name: req.user.last_name
+    };
+    res.redirect("/home");
+  }
+);
+
+passport.use(
+    "google",
+    new GoogleStrategy(
+        {
+            clientID: process.env.GOOGLE_CLIENT_ID,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+            callbackURL: process.env.GOOGLE_CALLBACK_URL,
+            userProfileURL: process.env.GOOGLE_PROFILE_URL,
+        },
+        async (accessToken, refreshToken, profile, cb) => {
+            try{
+                const result = await db.query(
+                    "SELECT * FROM users WHERE email = $1",
+                    [profile.email]
+                );
+
+                if(result.rows.length === 0) {
+                    const email = profile.email;
+                    const firstName = profile.name.givenName || "";
+                    const lastName = profile.name.familyName || "";
+                    const username = email.split("@")[0];
+
+                    const newUser = await db.query(
+                        "INSERT INTO users (first_name, last_name, email, password, username) VALUES ($1, $2, $3, $4, $5)",
+                        [firstName, lastName, email, "google", username]
+                    )
+
+                    return cb(null, newUser.rows[0]);
+                } else {
+                    return cb(null, result.rows[0]);
+                };
+            } catch(err) {
+                return cb(err, null);
+            }
+        }
+    )
+)
 
 app.get("/logout", (req, res) => {
     req.session.destroy((err) => {
@@ -273,6 +337,14 @@ app.get("/post/:id", isAuthenticated, async (req, res) => {
     } catch(err) {
         console.log(err);
     }
+});
+
+passport.serializeUser((user, done) => {
+  done(null, user);
+});
+
+passport.deserializeUser((user, done) => {
+  done(null, user);
 });
 
 app.listen(port, () => {
