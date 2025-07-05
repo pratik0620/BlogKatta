@@ -4,13 +4,79 @@
     display: flex;
     flex-direction: column;
     position: fixed;
-    padding-top: 10px;
+    padding-top: 60px;
     padding-left: 10px;
-    margin: 0 5px 0 0;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+/* Collapsed sidebar styles */
+#box.collapsed {
+    width: 60px;
+    padding-left: 5px;
+}
+
+#box.collapsed .name {
+    display: none;
+}
+
+#box.collapsed .tab,
+#box.collapsed .tab-logout {
+    justify-content: center;
+    padding: 12px 8px;
+}
+
+#box.collapsed .active-tab {
+    transform: translateX(0);
+}
+
+#box.collapsed .tab:hover {
+    transform: translateX(0);
+}
+
+#box.collapsed .active-tab::before {
+    display: none;
+}
+
+.nav-icon {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1001;
+}
+
+.nav-icon button {
+  background-color: var(--header-text-color);          /* Matches header background */
+  color: var(--header-bg);            /* White or light text */
+  border: none;
+  border-radius: 8px;
+  padding: 8px 10px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-icon button:hover {
+  background-color: var(--nav-hover-text);     /* A slightly lighter shade for hover */
+  transform: scale(1.05);
+}
+
+.nav-icon i {
+  font-size: 24px;
+}
+
+/* Adjust nav-items to avoid toggle button */
+.nav-items {
+    padding-top: 50px;
 }
 
 .nav-items {
     width: 100%;
+    padding-top: 20px;
 }
 
 .nav-items > a {
