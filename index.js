@@ -35,7 +35,9 @@ app.use(session({
     saveUninitialized: false,
     cookie: {
         maxAge: 1000 * 60 * 60 * 24 * 7,
-        secure: true, 
+        secure: process.env.NODE_ENV === "production", 
+        httpOnly: true,
+        sameSite: "lax",
     }
   }),
 );
@@ -186,7 +188,7 @@ passport.use("google",
 app.get("/logout", (req, res) => {
     req.session.destroy((err) => {
         if (err) {
-            console.log("Error destroying session:", err);
+            return res.redirect("/home");
         }
         res.redirect("/");
     });
@@ -227,7 +229,7 @@ app.post("/create", isAuthenticated, async (req, res) => {
             [author_id, author_name, title, content, currentTime, currentTime]
         )
     } catch(err) {
-        console.log(err);
+        res.redirect("/create")
     }
     res.redirect("/home");
 });
@@ -244,7 +246,6 @@ app.get("/user_post/edit/:id", isAuthenticated, async (req, res) => {
         }
         res.render("edit.ejs", {post: result.rows[0], user: req.session.user, activePage: "userPost"});
     } catch(err) {
-        console.log(err);
         res.redirect("/home")
     }
 });
@@ -276,7 +277,7 @@ app.post("/user_post/edit/:id", isAuthenticated, async (req, res) => {
             [title, author_name, content, currentTime, idToEdit]
         )
     } catch(err) {
-        console.log(err);
+        res.redirect("/user_post/edit/:id")
     }
     res.redirect("/home")
 });
@@ -303,7 +304,7 @@ app.post("/delete/:id", isAuthenticated, async (req, res) => {
             [idToDelete]
         );
     } catch(err) {
-        console.log(err);
+        res.redirect("/home");
     }
     res.redirect("/home");
 });
@@ -317,7 +318,7 @@ app.get("/user_post", isAuthenticated, async (req, res) => {
         );
         res.render("user_post.ejs", { posts: result.rows, user: req.session.user, activePage: "userPost" });
     } catch(err) {
-        console.log(err);
+        res.redirect("/home")
     }
 });
 
@@ -336,7 +337,7 @@ app.get("/post/:id", isAuthenticated, async (req, res) => {
         const post = result.rows[0];
         res.render("post.ejs", { posts: [post], user: req.session.user, activePage: "" });
     } catch(err) {
-        console.log(err);
+        res.redirect("/home")
     }
 });
 
