@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import pg from "pg";
 import bcrypt from "bcrypt";
 import session from "express-session";
+import pgSession from "connect-pg-simple";
 import passport from "passport";
 import GoogleStrategy from "passport-google-oauth2";
 import env from "dotenv";
@@ -26,7 +27,7 @@ app.use(express.static("public"));
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     cookie: {
         maxAge: 1000 * 60 * 60 * 24 * 7,
         secure: false, 
@@ -74,7 +75,7 @@ app.post("/register", async (req, res) => {
 
         res.redirect("/home")
     } catch(err){
-        console.log("Try again")
+        return res.redirect("/register?error=Error occurred. Try again");
     }
 });
 
@@ -114,7 +115,7 @@ app.post("/login", async (req, res) => {
         }
 
     } catch(err){
-        console.log(err);
+        return res.redirect("/login?error=Error occurred. Try again");
     }
 });
 
