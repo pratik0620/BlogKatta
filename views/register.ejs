@@ -19,6 +19,11 @@
 </head>
 <body>
   <div class="auth-form">
+    <% if (error) { %>
+      <div class="alert alert-danger">
+        <%= error %>
+      </div>
+    <% } %>
     <h2 class="mb-4 text-center">Register</h2>
     <form action="/register" method="POST">
       <div class="mb-3">

@@ -38,12 +38,13 @@ function isAuthenticated(req, res, next) {
     if(req.session.user){
         return next();
     } else{
-        res.redirect("/login");
+        res.redirect("/login?error=Unauthorized to access the page. Login first");
     }
 }
 
 app.get("/register", (req, res) => {
-    res.render("register.ejs")
+    const error = req.query.error;
+    res.render("register.ejs", { error });
 });
 
 app.post("/register", async (req, res) => {
@@ -60,7 +61,7 @@ app.post("/register", async (req, res) => {
             [email]
         );
         if(exists.rows.length > 0){
-            res.redirect("/login");
+            return res.redirect("/login?error=User already exists. Try login in");
         }
 
         //Hash Password
@@ -78,7 +79,8 @@ app.post("/register", async (req, res) => {
 });
 
 app.get("/login", (req, res) => {
-    res.render("login.ejs")
+    const error = req.query.error;
+    res.render("login.ejs", { error });
 });
 
 app.post("/login", async (req, res) => {
@@ -92,8 +94,8 @@ app.post("/login", async (req, res) => {
             [email]
         );
         if(result.rows.length === 0){
-            return res.redirect("/register")
-        }
+            return res.redirect("/register?error=User not found. Try to register");
+        };
 
         const user = result.rows[0];
         const storedPassword = user.password;
@@ -108,7 +110,7 @@ app.post("/login", async (req, res) => {
             }
             return res.redirect("/home");
         } else {
-            return res.send("Incorrect Password");
+            return res.redirect("/login?error=Incorrect password");
         }
 
     } catch(err){
