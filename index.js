@@ -9,8 +9,9 @@ import GoogleStrategy from "passport-google-oauth2";
 import env from "dotenv";
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 const saltRounds = 10;
+const PgSession = pgSession(session);
 env.config();
 
 const db = new pg.Client({
@@ -25,18 +26,22 @@ db.connect();
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 app.use(session({
+    store: new PgSession({
+        pool: db,
+        tableName: "session"
+    }),
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     cookie: {
         maxAge: 1000 * 60 * 60 * 24 * 7,
-        secure: false, 
+        secure: true, 
     }
   }),
 );
 
 function isAuthenticated(req, res, next) {
-    if(req.session.user){
+    if(req.session && req.session.user){
         return next();
     } else{
         res.redirect("/login?error=Unauthorized to access the page. Login first");
