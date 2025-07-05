@@ -7,18 +7,18 @@
     <link rel="stylesheet" href="/styles/themes/light-theme.css">
     <link rel="stylesheet" href="/styles/layout.css">
     <link rel="stylesheet" href="/styles/blog.css">
-    
 </head>
 <body>
     <div id="main">
-        <div id="header">
-            <%- include("partials/header.ejs") %>
+        <div id="sidebar">
+            <%- include("partials/sidebar.ejs") %>
         </div>
         
         <div id="blog">
-            <div id="sidebar">
-                <%- include("partials/sidebar.ejs") %>
+            <div id="header">
+                <%- include("partials/header.ejs") %>
             </div>
+            
             <div id="content">
                 <div class="user-topbar">
                     <%- include("partials/user_topbar") %>
@@ -37,10 +37,11 @@
                     <% } %>    
                 </div>
             </div>
+
+            <div id="footer">
+                <%- include("partials/footer.ejs") %>
+            </div>
         </div>         
-        <div id="footer">
-            <%- include("partials/footer.ejs") %>
-        </div>
     </div>
 </body>
 </html>

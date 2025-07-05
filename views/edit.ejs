@@ -10,12 +10,12 @@
 </head>
 <body>
     <div id="main">
-        <div id="header">
-            <%- include("partials/header.ejs") %>
+        <div id="sidebar">
+            <%- include("partials/sidebar.ejs") %>
         </div>
         <div id="blog">
-            <div id="sidebar">
-                <%- include("partials/sidebar.ejs") %>
+            <div id="header">
+                <%- include("partials/header.ejs") %>
             </div>
             <div id="content">
                 <div class="user-topbar">
@@ -45,9 +45,9 @@
                     </form>
                 </div>
             </div>
-        </div>
-        <div id="footer">
-            <%- include("partials/footer.ejs") %>
+            <div id="footer">
+                <%- include("partials/footer.ejs") %>
+            </div>
         </div>
     </div>
 </body>
