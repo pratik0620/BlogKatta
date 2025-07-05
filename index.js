@@ -207,8 +207,7 @@ app.get("/home", isAuthenticated, async (req, res) => {
         const result = await db.query("SELECT * FROM post ORDER BY post_created_at DESC");
         res.render("index.ejs", {posts: result.rows, user: req.session.user, activePage: "home"});
     } catch(err) {
-        console.log(err);
-        res.render("index.ejs", {posts: [], activePage: "create"});
+        res.render("index.ejs", { posts: [] });
     };
 });
 
