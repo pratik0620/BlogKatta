@@ -1,4 +1,7 @@
 :root{
+    /* Global */
+    --background-color: #F5F8FA;           /* Global background color */
+    
     /* Header */
     --header-bg: #1565C0;                  /* Navbar background */
     --header-text-color: #F5F8FA;          /* Title and nav item text */

@@ -47,8 +47,7 @@
 }
 
 .nav-icon button {
-  background-color: var(--header-text-color);          /* Matches header background */
-  color: var(--header-bg);            /* White or light text */
+  color: var(--header-bg);   
   border: none;
   border-radius: 8px;
   padding: 8px 10px;
@@ -61,22 +60,17 @@
 }
 
 .nav-icon button:hover {
-  background-color: var(--nav-hover-text);     /* A slightly lighter shade for hover */
   transform: scale(1.05);
 }
 
 .nav-icon i {
-  font-size: 24px;
+  font-size: 18px;
 }
 
 /* Adjust nav-items to avoid toggle button */
 .nav-items {
-    padding-top: 50px;
-}
-
-.nav-items {
     width: 100%;
-    padding-top: 20px;
+    padding-top: 50px;
 }
 
 .nav-items > a {

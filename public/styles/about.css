@@ -30,7 +30,7 @@
     margin-bottom: 2.5rem;
 }
 
-.about-grid > div {
+.about-grid > div, .about-project > div {
     background: var(--about-box-bg);
     padding: 1.5rem;
     border-radius: 12px;
@@ -38,6 +38,7 @@
 }
 
 .about-grid h3,
+.about-project h3,
 .about-developer h3 {
     margin-bottom: 1rem;
     font-size: 1.3rem;
@@ -56,6 +57,13 @@
 
 .about-grid ul {
     padding-left: 1.2rem;
+}
+
+.about-project{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 2rem;
 }
 
 .about-source a {

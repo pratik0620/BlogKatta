@@ -13,20 +13,14 @@ html, body {
     flex-shrink: 0;
 }
 
-#blog {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
 #sidebar {
     width: 220px;
     padding: 0;
     margin: 0;
-    background-color: var(--background-color);       /* #F5F8FA or #f8fafc */     /* #e5e7eb or #E0E0E0 */
+    background-color: var(--background-color);
     transition: width 0.3s ease;
     flex-shrink: 0;
-    border-right: 1px solid var(--card-border); /* Soft neutral divider */
+    border-right: 1px solid var(--card-border);
     box-shadow: 2px 0 6px rgba(0, 0, 0, 0.06); 
 }
 

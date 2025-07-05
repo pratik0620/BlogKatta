@@ -27,8 +27,8 @@
     flex-wrap: wrap;
 }
 
-.form-row .title,
-.form-row .author {
+.form-row .new-title,
+.form-row .new-author {
     flex: 1;
     min-width: 200px;
 }

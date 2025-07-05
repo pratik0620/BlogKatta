@@ -50,6 +50,6 @@
 }
 
 .nav-right a:hover{
-    color: var(--light-blue);
-    border-bottom: 2 px solid var(--nav-hover-underline);
+    color: var(--nav-hover-text);
+    border-bottom: 2px solid var(--nav-hover-underline);
 }
