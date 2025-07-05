@@ -89,3 +89,27 @@ textarea {
 .submit-Btn .submit:hover {
     background-color: var(--submit-btn-hover-bg);
 }
+
+@media (max-width: 550px) {
+  .post {
+    min-width: 0;
+    max-width: 100%;
+    padding: 1rem;
+    margin: 20px 10px;
+  }
+  .form-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .form-row .new-title,
+  .form-row .new-author {
+    min-width: 0;
+  }
+  .submit-Btn {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .create-post-content {
+    padding: 0.5rem;
+}
+}

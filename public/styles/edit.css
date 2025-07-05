@@ -112,3 +112,27 @@ textarea {
 .cancel:hover {
     background-color: var(--btn-cancel-hover);
 }
+
+@media (max-width: 550px) {
+  .post {
+    min-width: 0;
+    max-width: 100%;
+    padding: 1rem;
+    margin: 10px 10px auto;
+  }
+  .form-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .form-row .title,
+  .form-row .author {
+    min-width: 0;
+  }
+  .submit-Btn {
+    flex-direction: column;
+    gap: 8px;
+  }
+  #edit-post {
+    padding: 0.5rem;
+}
+}

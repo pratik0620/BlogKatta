@@ -143,3 +143,12 @@
 .social-links i {
     font-size: 1.5rem;
 }
+
+@media (max-width: 650px){
+    .about-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        margin-bottom: 2.5rem;
+    }
+}

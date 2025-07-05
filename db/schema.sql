@@ -1,3 +1,15 @@
+-- database for users
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50),
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    username VARCHAR(50) UNIQUE,
+    user_created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    user_updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 -- database for post
 CREATE TABLE post (
 	id SERIAL PRIMARY KEY,
@@ -10,16 +22,4 @@ CREATE TABLE post (
 
 	-- Foreign key to users table
 	CONSTRAINT fk_author FOREIGN KEY (author_id) REFERENCES users(id) ON DELETE CASCADE
-);
-
--- database for users
-CREATE TABLE users (
-    id SERIAL PRIMARY KEY,
-    first_name VARCHAR(50) NOT NULL,
-    last_name VARCHAR(50),
-    email VARCHAR(100) UNIQUE NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    username VARCHAR(50) UNIQUE,
-    user_created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    user_updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
