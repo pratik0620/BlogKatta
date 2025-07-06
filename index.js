@@ -40,7 +40,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 app.use(session({
     store: new PgSession({
-        pool: sessionPool,
+        pool: db,
         tableName: "session"
     }),
     secret: process.env.SESSION_SECRET,
@@ -48,7 +48,7 @@ app.use(session({
     saveUninitialized: false,
     cookie: {
         maxAge: 1000 * 60 * 60 * 24 * 7,
-        secure: true, 
+        secure: false, 
         httpOnly: true,
         sameSite: "none",
     }
@@ -289,7 +289,7 @@ app.post("/user_post/edit/:id", isAuthenticated, async (req, res) => {
             [title, author_name, content, currentTime, idToEdit]
         )
     } catch(err) {
-        res.redirect("/user_post/edit/:id")
+        res.redirect(`/user_post/edit/${idToEdit}`);
     }
     res.redirect("/home")
 });
