@@ -18,7 +18,7 @@ CREATE TABLE post (
 	title VARCHAR(255) NOT NULL,
 	content TEXT NOT NULL,
 	post_created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	post_updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+	post_updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
 	-- Foreign key to users table
 	CONSTRAINT fk_author FOREIGN KEY (author_id) REFERENCES users(id) ON DELETE CASCADE
