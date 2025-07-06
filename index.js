@@ -40,7 +40,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 app.use(session({
     store: new PgSession({
-        pool: db,
+        pool: sessionPool,
         tableName: "session"
     }),
     secret: process.env.SESSION_SECRET,
