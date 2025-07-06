@@ -264,3 +264,23 @@ footer {
     color: var(--footer-note-text);
     margin-top: 10px;
 }
+
+@media(max-width: 400px) {
+    #header{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media(max-width: 600px) {
+    .footer-container{
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .footer-links{
+        display: flex;
+        gap: 2rem;
+    }
+}
