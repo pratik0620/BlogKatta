@@ -26,11 +26,20 @@ const db = new pg.Client({
 });
 db.connect();
 
+const sessionPool = new pg.Pool({ 
+  user: process.env.PG_USER,
+  host: process.env.PG_HOST,
+  database: process.env.PG_DATABASE,
+  password: process.env.PG_PASSWORD,
+  port: process.env.PG_PORT,
+  ssl: { rejectUnauthorized: false }
+});
+
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 app.use(session({
     store: new PgSession({
-        pool: db,
+        pool: sessionPool,
         tableName: "session"
     }),
     secret: process.env.SESSION_SECRET,
