@@ -35,6 +35,7 @@ const sessionPool = new pg.Pool({
   ssl: { rejectUnauthorized: false }
 });
 
+app.set("trust proxy", 1);
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 app.use(session({
@@ -47,7 +48,7 @@ app.use(session({
     saveUninitialized: false,
     cookie: {
         maxAge: 1000 * 60 * 60 * 24 * 7,
-        secure: process.env.NODE_ENV === "production", 
+        secure: true, 
         httpOnly: true,
         sameSite: "lax",
     }
