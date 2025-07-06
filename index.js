@@ -50,7 +50,7 @@ app.use(session({
         maxAge: 1000 * 60 * 60 * 24 * 7,
         secure: true, 
         httpOnly: true,
-        sameSite: "lax",
+        sameSite: "none",
     }
   }),
 );
@@ -59,7 +59,7 @@ function isAuthenticated(req, res, next) {
     if(req.session && req.session.user){
         return next();
     } else{
-        res.redirect("/login?error=Unauthorized to access the page. Login first");
+        return res.redirect("/login?error=Unauthorized to access the page. Login first");
     }
 }
 
