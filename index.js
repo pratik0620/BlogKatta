@@ -14,6 +14,7 @@ const saltRounds = 10;
 const PgSession = pgSession(session);
 env.config();
 
+// Server Hosting (Keep Localhost code commented)
 const db = new pg.Client({
     user: process.env.PG_USER,
     host: process.env.PG_HOST,
@@ -55,6 +56,35 @@ app.use(session({
   }),
 );
 
+// // For Localhost.
+// // First comment the above code.
+// const db = new pg.Client({
+//     user: process.env.PG_USER,
+//     host: process.env.PG_HOST,
+//     database: process.env.PG_DATABASE,
+//     password: process.env.PG_PASSWORD,
+//     port: process.env.PG_PORT,
+// });
+// db.connect();
+
+// app.use(bodyParser.urlencoded({extended: true}));
+// app.use(express.static("public"));
+// app.use(session({
+//     store: new PgSession({
+//         pool: db,
+//         tableName: "session"
+//     }),
+//     secret: process.env.SESSION_SECRET,
+//     resave: false,
+//     saveUninitialized: false,
+//     cookie: {
+//         maxAge: 1000 * 60 * 60 * 24 * 7,
+//         secure: false,
+//     }
+//   }),
+// );
+
+// Code
 function isAuthenticated(req, res, next) {
     if(req.session && req.session.user){
         return next();

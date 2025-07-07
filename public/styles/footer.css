@@ -75,3 +75,10 @@ footer {
 .footer-social a:hover {
   color: var(--footer-icon-hover); /* #90CAF9 */
 }
+
+@media (max-width:700px){
+  .footer-container{
+    display: flex;
+    flex-direction: column;
+  }
+}
